@@ -1,19 +1,31 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { PublicRouter } from '-/routes';
+import { DefaultLayout } from './Layout';
 
 function App() {
   return (
     <Router>
       <div className="App">
-        <p>dd</p>
         <Routes>
           {PublicRouter.map((ele, index) => {
             const Com = ele.component;
-            const aa = ele.path;
+            let Layout = DefaultLayout;
 
-           
+            if (ele.layout !== null) {
+              Layout = ele.layout;
+            }
 
-            return <Route key={index} path={ele.path} component={<Com />} />;
+            return (
+              <Route
+                key={index}
+                path={ele.path}
+                element={
+                  <Layout>
+                    <Com />
+                  </Layout>
+                }
+              />
+            );
           })}
         </Routes>
       </div>
