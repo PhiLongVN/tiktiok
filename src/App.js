@@ -1,8 +1,14 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { PublicRouter } from '-/routes';
 import { DefaultLayout } from './Layout';
+import '-/component/DarkTheme/DarkTheme.scss';
 
 function App() {
+  const handleTheme = (theme) => {
+
+    console.log(theme);
+  };
+
   return (
     <Router>
       <div className="App">

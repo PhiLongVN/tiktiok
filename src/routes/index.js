@@ -1,6 +1,6 @@
 import Home from '-/pages/Home';
 import Following from '-/pages/Following';
-import Update from '-/pages/Update';
+import Update from '-/pages/Live';
 
 import { DefaultLayout, UploadLayout, ProfileLayout } from '-/Layout';
 

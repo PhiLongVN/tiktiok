@@ -3,7 +3,6 @@ import SideBar from '-/component/SideBar';
 import React from 'react';
 import styles from '-/Layout/ProfileLayout/ProfileLayout.module.scss';
 import classNames from 'classnames/bind';
-
 function ProfileLayout({ children }) {
   var cx = classNames.bind(styles);
 
