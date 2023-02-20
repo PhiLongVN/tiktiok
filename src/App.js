@@ -26,7 +26,7 @@ function App() {
                 key={index}
                 path={ele.path}
                 element={
-                  <Layout>
+                  <Layout handleTheme={handleTheme} >
                     <Com />
                   </Layout>
                 }

@@ -9,18 +9,18 @@ function Switch(props) {
 
   const toggleTheme = () => {
     if (theme === 'light') {
-      setTheme = 'dark';
+      setTheme('dark');
     } else {
-      setTheme = 'light';
+      setTheme('light');
     }
     props.handleTheme(theme);
   };
 
   return (
     <div className={cx('ball')} onClick={toggleTheme}>
-      <label htmlFor="input" class={cx('switch')}>
+      <label htmlFor="input" className={cx('switch')}>
         <input id="input" type="checkbox" />
-        <span class={cx('slider')}></span>
+        <span className={cx('slider')}></span>
       </label>
     </div>
   );
