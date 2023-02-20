@@ -62,7 +62,18 @@
 }
 
 .box {
-  background-color: red;
+  max-width: 361px;
+  width: 100vw;
+  margin: auto;
+  padding: 5px 10px;
+  background-color: white;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  border-radius: 4px;
+  min-height: 200px;
+  h3 {
+    font-size: 2rem;
+    font-weight: 600;
+  }
 }
 
 // .icon-load

@@ -2,11 +2,11 @@ import React from 'react';
 import styles from '-/component/Header/Header.module.scss';
 import classNames from 'classnames/bind';
 import Switch from '../Switch';
+import Account from '../Acount';
 import logo from '-/assets/logo/logo.svg';
+
 import Tippy from '@tippyjs/react/headless';
 import { useSpring, motion } from 'framer-motion';
-import styled from 'styled-components';
-
 import { AiOutlineLoading3Quarters, AiOutlineSearch } from 'react-icons/ai';
 import { TiDelete } from 'react-icons/ti';
 import { HiOutlineDotsVertical, HiPlus } from 'react-icons/hi';
@@ -15,13 +15,6 @@ import { CiDark } from 'react-icons/ci';
 import { GrHelp } from 'react-icons/gr';
 import { useState } from 'react';
 
-const Box = styled(motion.div)`
-  background: #333;
-  color: white;
-  padding: 5px 10px;
-  border-radius: 4px;
-  width: 100%;
-`;
 function Header(props) {
   //  animation
   const springConfig = { damping: 15, stiffness: 300 };
@@ -47,6 +40,19 @@ function Header(props) {
   }
   // ----------------
 
+  // deleteSearchText
+  const [searchText, setSearchText] = useState('');
+
+  const handleDelete = () => {
+    setSearchText('');
+  };
+
+  const handleChange = (e) => {
+    setSearchText(e.target.value);
+  };
+// ------------------------------
+
+
   let cx = classNames.bind(styles);
   const [searchResult, setsSarchResult] = useState([1]);
 
@@ -59,26 +65,36 @@ function Header(props) {
 
         <Tippy
           render={(attrs) => (
-            <Box
+            <div
               style={{ scale, opacity }}
               {...attrs}
               className={cx('box')}
               tabIndex="-1"
               {...attrs}
             >
-              My tippy box
-            </Box>
+              <h3>Account title</h3>
+              <Account />
+              <Account />
+              <Account />
+              <Account />
+            </div>
           )}
+          interactive
           visible={searchResult.length > 0}
           animation={true}
           onMount={onMount}
           onHide={onHide}
         >
           <div className={cx('search')}>
-            <input type="text" placeholder="Search accounts and videos" />
+            <input
+              type="text"
+              value={searchText}
+              onChange={handleChange}
+              placeholder="Search accounts and videos"
+            />
             <div className={cx('icon-load')}>
               <span>
-                <TiDelete />
+                <TiDelete onClick={handleDelete} />
               </span>
               <span>
                 <AiOutlineLoading3Quarters />
