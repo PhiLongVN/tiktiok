@@ -1,0 +1,41 @@
+:root {
+  --button-width: 110px;
+  --button-height: 36px;
+}
+
+.wrapper {
+  line-height: 24px;
+  font-style: normal;
+  font-weight: 600;
+
+  padding: 0 1.6rem;
+  height: var(--button-height);
+  width: var(--button-width);
+  cursor: pointer;
+}
+// ------------------------------------
+.outline {
+  font-weight: 400;
+
+  gap: 1rem;
+  border: 1px solid rgba(22, 24, 35, 0.12);
+  background: rgba(255, 255, 255, 1);
+
+  &:hover {
+    background-color: rgba(22, 24, 35, 0.03);
+  }
+}
+
+.primary {
+  border-radius: 4px;
+  color: rgba(255, 255, 255, 1);
+  background-color: rgba(254, 44, 85, 1);
+  &:hover {
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.06), rgba(0, 0, 0, 0.06)),
+      #fe2c55;
+  }
+}
+
+.round {
+  border-radius: 25px;
+}

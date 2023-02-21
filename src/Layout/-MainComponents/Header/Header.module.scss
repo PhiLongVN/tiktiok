@@ -132,45 +132,19 @@
   justify-content: center;
   align-items: center;
   gap: 1.6rem;
-
-  button {
-    line-height: 24px;
-    font-style: normal;
-    font-weight: 600;
-
-    padding: 0 1.6rem;
-  }
-}
-.upload {
-  font-weight: 400;
-  height: 36px;
-  width: 110px;
-  gap: 1rem;
-  border: 1px solid rgba(22, 24, 35, 0.12);
-  background: rgba(255, 255, 255, 1);
-
-  &:hover {
-    background-color: rgba(22, 24, 35, 0.03);
-  }
-}
-
-.log-in {
-  height: 36px;
-  width: 100px;
-
-  border-radius: 4px;
-  color: rgba(255, 255, 255, 1);
-  background-color: rgba(254, 44, 85, 1);
-  &:hover {
-    background: linear-gradient(0deg, rgba(0, 0, 0, 0.06), rgba(0, 0, 0, 0.06)),
-      #fe2c55;
-  }
 }
 
 .dot {
   position: relative;
   font-size: 2.4rem;
   background: transparent;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 20px;
+
+  &:hover {
+    background: #00000016;
+  }
 
   &:hover > * {
     visibility: visible;
@@ -189,49 +163,4 @@
   background: white;
   visibility: hidden;
   transition: 0.5s all ease;
-}
-.pop-up {
-  opacity: 0;
-  // transform: scale(0.5);
-
-  transition: 0.5s all ease;
-
-  visibility: hidden;
-  position: absolute;
-  top: calc(100% + 10px);
-  right: 0;
-  border-radius: 20px;
-  padding: 2rem 0rem;
-  background: white;
-  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-  z-index: 5;
-
-  &::before {
-    content: '';
-    position: absolute;
-    width: 100px;
-    height: 50px;
-    background: transparent;
-    top: -10%;
-    right: 0;
-  }
-}
-
-.list {
-  padding: 0.7rem;
-  width: 250px;
-  padding: 0.5rem 1rem;
-  display: flex;
-  font-size: 1.8rem;
-  justify-content: flex-start;
-  align-items: center;
-  gap: 1rem;
-
-  &:hover {
-    background: #9f9f9f15;
-  }
-
-  span {
-    font-weight: 400;
-  }
 }

@@ -1,19 +1,18 @@
 import React from 'react';
-import styles from '-/component/Header/Header.module.scss';
+import styles from '-/Layout/-MainComponents/Header/Header.module.scss';
 import classNames from 'classnames/bind';
-import Switch from '../Switch';
-import Account from '../Acount';
+import Account from '../../../component/Acount';
 import logo from '-/assets/logo/logo.svg';
+import Popup from '../../../component/Popup';
+import Button from '-/component/Button';
 
 import Tippy from '@tippyjs/react/headless';
-import { useSpring, motion } from 'framer-motion';
+import { useSpring } from 'framer-motion';
 import { AiOutlineLoading3Quarters, AiOutlineSearch } from 'react-icons/ai';
 import { TiDelete } from 'react-icons/ti';
-import { HiOutlineDotsVertical, HiPlus } from 'react-icons/hi';
-import { BsKeyboard, BsSortAlphaDown } from 'react-icons/bs';
-import { CiDark } from 'react-icons/ci';
-import { GrHelp } from 'react-icons/gr';
+import { HiOutlineDotsVertical } from 'react-icons/hi';
 import { useState } from 'react';
+import { faPlusSquare } from '@fortawesome/free-solid-svg-icons';
 
 function Header(props) {
   //  animation
@@ -50,11 +49,10 @@ function Header(props) {
   const handleChange = (e) => {
     setSearchText(e.target.value);
   };
-// ------------------------------
-
+  // ------------------------------
 
   let cx = classNames.bind(styles);
-  const [searchResult, setsSarchResult] = useState([1]);
+  const [searchResult, setsSarchResult] = useState([]);
 
   return (
     <div className={cx('header')}>
@@ -80,7 +78,7 @@ function Header(props) {
             </div>
           )}
           interactive
-          visible={searchResult.length > 0}
+          visible={searchText.length > 0}
           animation={true}
           onMount={onMount}
           onHide={onHide}
@@ -108,35 +106,16 @@ function Header(props) {
 
         {/* log in */}
         <div className={cx('log')}>
-          <button className={cx('upload')}>
-            <HiPlus /> Upload
-          </button>
-          <button className={cx('log-in')}>Log in</button>
-          <button className={cx('dot')}>
+          <Button outline icon={faPlusSquare}>
+            Upload
+          </Button>
+          <Button primary>Log in</Button>
+
+          <div className={cx('dot')}>
             <HiOutlineDotsVertical />
             <div className={cx('triangle')}></div>
-            <div className={cx('pop-up')}>
-              <ul>
-                <li className={cx('list')}>
-                  <BsSortAlphaDown />
-                  <span>English</span>
-                </li>
-                <li className={cx('list')}>
-                  <GrHelp />
-                  <span>Feedback and Help</span>
-                </li>
-                <li className={cx('list')}>
-                  <BsKeyboard />
-                  <span>Keyboard Shortcut</span>
-                </li>
-                <li className={cx('list')}>
-                  <CiDark />
-                  <span>Dark Mode</span>
-                  <Switch handleTheme={props.handleTheme} />
-                </li>
-              </ul>
-            </div>
-          </button>
+            <Popup />
+          </div>
         </div>
       </div>
     </div>

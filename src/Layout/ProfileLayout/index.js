@@ -1,5 +1,5 @@
-import Header from '-/component/Header';
-import SideBar from '-/component/SideBar';
+import Header from '-/Layout/-MainComponents/Header';
+import SideBar from '-/Layout/-MainComponents/SideBar';
 import React from 'react';
 import styles from '-/Layout/ProfileLayout/ProfileLayout.module.scss';
 import classNames from 'classnames/bind';
