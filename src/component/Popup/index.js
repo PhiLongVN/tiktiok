@@ -6,12 +6,16 @@ import { useState } from 'react';
 
 import {
   faBackwardFast,
+  faCoins,
+  faGear,
   faHandsHelping,
   faKeyboard,
   faMoon,
+  faRightFromBracket,
   faSortAlphaDown,
+  faUser,
 } from '@fortawesome/free-solid-svg-icons';
-import HeaderLanguage from './Header';
+import HeaderLanguage from './HeaderLanguage';
 
 let cx = classNames.bind(styles);
 
@@ -66,8 +70,17 @@ const MENU_ITEMS = [
   { icon: faMoon, title: 'Dark Mode', theme: true },
 ];
 
-function Popup({ handleTheme }) {
-  const [history, setHistory] = useState([{ data: MENU_ITEMS }]);
+const MENU_USER_ITEMS = [
+  { icon: faUser, title: 'View Profile', to: '/profile' },
+  { icon: faCoins, title: 'Get Coins', to: '/coin' },
+  { icon: faGear, title: 'Setting', to: '/setting' },
+  ...MENU_ITEMS,
+  { icon: faRightFromBracket, title: 'Log Out', to: '/out', separate: "true" },
+];
+
+function Popup({ isUser }) {
+  let items = isUser ? MENU_USER_ITEMS : MENU_ITEMS;
+  const [history, setHistory] = useState([{ data: items }]);
 
   const current = history[history.length - 1];
 
@@ -86,7 +99,6 @@ function Popup({ handleTheme }) {
     }, 700);
   };
 
-  
   return (
     <div onMouseLeave={handleLeave} className={cx('pop-up')}>
       {history.length > 1 && (
@@ -99,13 +111,14 @@ function Popup({ handleTheme }) {
 
       {current.data.map((ele, index) => {
         let isParent = !!ele.children;
-
         return (
           <Item
             key={index}
             theme={ele.theme}
             href={ele.href}
+            to={ele.to}
             icon={ele.icon}
+            separate={ele.separate}
             onClick={() => {
               handleExpand(ele, isParent);
             }}

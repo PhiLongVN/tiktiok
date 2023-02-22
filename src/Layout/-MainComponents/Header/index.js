@@ -12,10 +12,21 @@ import { AiOutlineLoading3Quarters, AiOutlineSearch } from 'react-icons/ai';
 import { TiDelete } from 'react-icons/ti';
 import { HiOutlineDotsVertical } from 'react-icons/hi';
 import { useState } from 'react';
-import { faPlusSquare } from '@fortawesome/free-solid-svg-icons';
+import {
+  faMessage,
+  faPlusSquare,
+  faUpload,
+} from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-function Header(props) {
-  //  animation
+let cx = classNames.bind(styles);
+
+function Header({ isUser = true }) {
+  const props = {
+    isUser,
+  };
+
+  //  animation----------------------
   const springConfig = { damping: 15, stiffness: 300 };
   const initialScale = 0.5;
   const opacity = useSpring(0, springConfig);
@@ -37,9 +48,9 @@ function Header(props) {
     scale.set(initialScale);
     opacity.set(0);
   }
-  // ----------------
+  // ------------------------------------------------------------------------------------------------------------
 
-  // deleteSearchText
+  // deleteSearchText-------------
   const [searchText, setSearchText] = useState('');
 
   const handleDelete = () => {
@@ -49,9 +60,8 @@ function Header(props) {
   const handleChange = (e) => {
     setSearchText(e.target.value);
   };
-  // ------------------------------
+  // ---------------------------------------------------------------------------------------------------------------
 
-  let cx = classNames.bind(styles);
   const [searchResult, setsSarchResult] = useState([]);
 
   return (
@@ -59,8 +69,8 @@ function Header(props) {
       <div className={cx('inner-header')}>
         {/* logo */}
         <img src={logo} alt="tik-tok-logo" />
-        {/* search */}
 
+        {/* search */}
         <Tippy
           render={(attrs) => (
             <div
@@ -106,16 +116,39 @@ function Header(props) {
 
         {/* log in */}
         <div className={cx('log')}>
-          <Button outline icon={faPlusSquare}>
-            Upload
-          </Button>
-          <Button primary>Log in</Button>
+          {isUser ? (
+            <>
+              <Button to={'upload'} iconOnly icon={faUpload}></Button>
+              <Button
+                to={'mess'}
+                iconOnly
+                classNames={cx('mess')}
+                icon={faMessage}
+                numberIb="15"
+              ></Button>
+              <div className={cx('avatar')}>
+                <img
+                  src="https://th.bing.com/th?id=ORMS.fc540491583dbad5dde2419fbc4d1eb4&pid=Wdp&w=300&h=156&qlt=90&c=1&rs=1&dpr=1.25&p=0"
+                  alt="avatar"
+                />
+                <div style={{ right: '10px' }} className={cx('triangle')}></div>
+                <Popup isUser={true} />
+              </div>
+            </>
+          ) : (
+            <>
+              <Button outline icon={faPlusSquare}>
+                Upload
+              </Button>
+              <Button primary>Log in</Button>
 
-          <div className={cx('dot')}>
-            <HiOutlineDotsVertical />
-            <div className={cx('triangle')}></div>
-            <Popup />
-          </div>
+              <div className={cx('dot')}>
+                <HiOutlineDotsVertical />
+                <div className={cx('triangle')}></div>
+                <Popup isUser={false} />
+              </div>
+            </>
+          )}
         </div>
       </div>
     </div>

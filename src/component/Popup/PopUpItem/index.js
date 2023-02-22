@@ -15,10 +15,11 @@ function Item({
   to,
   href,
   target,
+  separate,
   ...plusProp
 }) {
   const props = {
-    onClick
+    onClick,
   };
 
   let Comp = 'div';
@@ -31,9 +32,11 @@ function Item({
     Comp = Link;
     props.to = to;
   }
-
+  let classes = cx('list', {
+    separate: separate,
+  });
   return (
-    <Comp className={cx('list')} {...props} {...plusProp}>
+    <Comp className={classes} {...props} {...plusProp}>
       {icon && (
         <span className={cx('icon')}>
           <FontAwesomeIcon icon={icon} />

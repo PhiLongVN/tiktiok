@@ -39,3 +39,26 @@
 .round {
   border-radius: 25px;
 }
+
+.iconOnly {
+  width: 50px;
+  height: 50px;
+  padding: 0.75rem;
+  background-color: transparent;
+  border-radius: 200px;
+
+  &:hover {
+    background-color: rgba(22, 24, 35, 0.03);
+  }
+}
+
+.numberIb {
+  position: absolute;
+  top: 0;
+  right: 5px;
+  background-color: red;
+  border-radius: 50px;
+  color: white;
+  padding: 0 0.5rem;
+  font-size: 1.25rem;
+}

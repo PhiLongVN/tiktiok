@@ -9,6 +9,7 @@
   right: 0;
   border-radius: 20px;
   padding: 2rem 0rem;
+  padding-bottom: 0;
   background: white;
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
   z-index: 5;
@@ -39,9 +40,12 @@
   &:hover {
     background: #9f9f9f15;
   }
+
+  &.separate {
+    border-top: 2px gray solid;
+    padding-bottom: 2rem;
+  }
 }
-
-
 
 .title {
   text-align: left;
@@ -51,6 +55,7 @@
 
 .icon {
   width: 35px;
+  text-align: left;
 }
 
 // header-lang
