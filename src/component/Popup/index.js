@@ -71,12 +71,45 @@ function Popup({ handleTheme }) {
 
   const current = history[history.length - 1];
 
+  const handleExpand = (ele, isParent) => {
+    if (isParent) {
+      setHistory((prev) => [...prev, ele.children]);
+    }
+  };
+  const handleBack = () => {
+    setHistory((prev) => prev.slice(0, history.length - 1));
+  };
+
+  const handleLeave = () => {
+    setTimeout(() => {
+      setHistory((prev) => prev.slice(0, 1));
+    }, 700);
+  };
+
+  
   return (
-    <div className={cx('pop-up')}>
-      <HeaderLanguage icon={faBackwardFast} title="Language" />
+    <div onMouseLeave={handleLeave} className={cx('pop-up')}>
+      {history.length > 1 && (
+        <HeaderLanguage
+          icon={faBackwardFast}
+          title="Language"
+          onClick={handleBack}
+        />
+      )}
+
       {current.data.map((ele, index) => {
+        let isParent = !!ele.children;
+
         return (
-          <Item key={index} theme={ele.theme} href={ele.href} icon={ele.icon}>
+          <Item
+            key={index}
+            theme={ele.theme}
+            href={ele.href}
+            icon={ele.icon}
+            onClick={() => {
+              handleExpand(ele, isParent);
+            }}
+          >
             {ele.title}
           </Item>
         );

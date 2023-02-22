@@ -5,11 +5,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 let cx = classNames.bind(styles);
 
-function HeaderLanguage({ title, icon }) {
+function HeaderLanguage({ onClick, title, icon }) {
   return (
     <div className={cx('header-lang')}>
       <span>
-        <FontAwesomeIcon icon={icon} />
+        <FontAwesomeIcon onClick={onClick} icon={icon} />
       </span>
       <h4>{title}</h4>
     </div>

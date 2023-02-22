@@ -17,7 +17,9 @@ function Item({
   target,
   ...plusProp
 }) {
-  const props = {};
+  const props = {
+    onClick
+  };
 
   let Comp = 'div';
 

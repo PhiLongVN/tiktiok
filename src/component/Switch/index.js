@@ -13,7 +13,6 @@ function Switch(props) {
     } else {
       setTheme('light');
     }
-    // props.handleTheme(theme);
   };
 
   return (
