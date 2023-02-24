@@ -14,25 +14,37 @@ function SearchBar() {
   const [showBox, setShowBox] = useState(true);
   const [searchText, setSearchText] = useState('');
   const [result, setResult] = useState([]);
-
+  const [loading, setLoading] = useState(false);
+  const [loaded, setLoaded] = useState(true);
   // interactive-SearchText-------------
 
   const handleDelete = () => {
     setSearchText('');
     inputFocus.current.focus();
+    setResult([]);
   };
 
   const handleChange = (e) => {
     setSearchText(e.target.value);
+    // setLoading(true);
   };
   const handleCLickOutSide = () => {
     setShowBox(false);
   };
   // ---------------------------------------------------------------------------------------------------------------
   useEffect(() => {
-    fetch('https://tiktok.fullstack.edu.vn/api/users/search?q=hoaa&type=less')
+    if (searchText === '') {
+      return;
+    }
+    setLoaded(false);
+    setLoading(true);
+    fetch(
+      `https://tiktok.fullstack.edu.vn/api/users/search?q=${searchText}&type=less`
+    )
       .then((res) => res.json())
       .then((res) => {
+        setLoaded(true);
+        setLoading(false);
         setResult(res.data);
       });
   }, [searchText]);
@@ -43,7 +55,7 @@ function SearchBar() {
         <div {...attrs} className={cx('box')} tabIndex="-1" {...attrs}>
           <h3>Account title</h3>
           {result.map((val) => {
-            return <Account data={val} />;
+            return <Account name={val.full_name} key={val.id} data={val} />;
           })}
         </div>
       )}
@@ -63,11 +75,16 @@ function SearchBar() {
           placeholder="Search accounts and videos"
         />
         <div className={cx('icon-load')}>
-          <span>
-            <TiDelete onClick={handleDelete} />
+          {/* loading */}
+          <span className={cx('loading')}>
+            {loading && <AiOutlineLoading3Quarters />}
           </span>
-          <span>
-            <AiOutlineLoading3Quarters />
+
+          {/* loaded */}
+          <span className={cx('loaded')}>
+            {loaded && searchText.length > 0 && (
+              <TiDelete onClick={handleDelete} />
+            )}
           </span>
         </div>
         <button className={cx('search-icon')}>

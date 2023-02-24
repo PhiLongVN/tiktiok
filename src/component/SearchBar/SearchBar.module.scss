@@ -34,8 +34,9 @@
       color: #000;
     }
 
-    &:not(:placeholder-shown) ~ .icon-load > span:nth-child(1) {
+    &:not(:placeholder-shown) ~ .icon-load > span:nth-child(2) {
       visibility: visible;
+      z-index: 9999;
     }
   }
 }
@@ -44,12 +45,12 @@
   max-width: 361px;
   width: 100vw;
   margin: auto;
-  padding: 5px 10px;
   background-color: white;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-  border-radius: 4px;
-  min-height: 200px;
+  border-radius: 0 0 25px 25px;
+  min-height: auto;
   h3 {
+    padding: 1rem;
     font-size: 2rem;
     font-weight: 600;
   }
@@ -64,7 +65,6 @@
     right: calc(var(--width-search) + 16px);
     width: 16px;
     height: 16px;
-    visibility: hidden;
     cursor: pointer;
 
     &:hover {
@@ -72,7 +72,16 @@
     }
   }
 }
+.loading {
+  animation: spinner 0.4s linear infinite;
+}
 
+@keyframes spinner {
+  to {
+    
+    transform: translateY(-50%) rotate(360deg);
+  }
+}
 // .search-icon
 .search-icon {
   font-size: 2.4rem;

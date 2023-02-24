@@ -8,9 +8,10 @@
   gap: 1rem;
   border-radius: 20px;
   padding: 1rem;
+  text-align: left;
 
   &:hover {
-    background: #00000033;
+    background: #00000019;
   }
   img {
     width: 50px;
@@ -22,5 +23,8 @@
     display: flex;
     gap: 0.75rem;
     justify-content: flex-start;
+  }
+  .icon {
+    color: blue;
   }
 }
