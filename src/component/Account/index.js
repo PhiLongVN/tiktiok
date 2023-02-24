@@ -1,11 +1,11 @@
 import classNames from 'classnames/bind';
-import styles from '-/component/Acount/Account.module.scss';
+import styles from '-/component/Account/Account.module.scss';
 import { AiFillCheckCircle } from 'react-icons/ai';
 
 import React from 'react';
 
 let cx = classNames.bind(styles);
-function Account() {
+function Account(data) {
   return (
     <div className={cx('acc-block')}>
       <img
@@ -17,7 +17,7 @@ function Account() {
           <span>long</span>
           <AiFillCheckCircle />
         </p>
-        <h4>longpadasdasdashi</h4>
+        <h4>long</h4>
       </div>
     </div>
   );

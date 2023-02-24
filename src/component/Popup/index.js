@@ -92,7 +92,6 @@ function Popup({ isUser }) {
   const handleBack = () => {
     setHistory((prev) => prev.slice(0, history.length - 1));
   };
-
   const handleLeave = () => {
     setTimeout(() => {
       setHistory((prev) => prev.slice(0, 1));
