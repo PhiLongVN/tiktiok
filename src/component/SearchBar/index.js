@@ -1,11 +1,12 @@
 import React from 'react';
 import classNames from 'classnames/bind';
 import Account from '-/component/Account';
-import { useRef, useEffect } from 'react';
+import { useRef, useEffect, useState } from 'react';
+import { useDebounce } from '../Hook';
+
 import Tippy from '@tippyjs/react/headless';
 import { AiOutlineLoading3Quarters, AiOutlineSearch } from 'react-icons/ai';
 import { TiDelete } from 'react-icons/ti';
-import { useState } from 'react';
 import styles from '-/component/SearchBar/SearchBar.module.scss';
 let cx = classNames.bind(styles);
 
@@ -26,22 +27,25 @@ function SearchBar() {
 
   const handleChange = (e) => {
     setSearchText(e.target.value);
-    // setLoading(true);
   };
   const handleCLickOutSide = () => {
     setShowBox(false);
   };
   // ---------------------------------------------------------------------------------------------------------------
+  const debounceValue = useDebounce(searchText, 800);
+
   useEffect(() => {
-    if (searchText.trim() === '') {
+    if (debounceValue.trim() === '') {
       setResult([]);
+      setLoading(false);
       return;
     }
     setLoaded(false);
     setLoading(true);
+
     fetch(
       `https://tiktok.fullstack.edu.vn/api/users/search?q=${encodeURI(
-        searchText
+        debounceValue
       )}&type=less`
     )
       .then((res) => res.json())
@@ -50,7 +54,11 @@ function SearchBar() {
         setLoading(false);
         setResult(res.data);
       });
-  }, [searchText]);
+    // const aaa = setTimeout(() => {
+    // }, 800);
+
+    // return () => clearTimeout(aaa);
+  }, [debounceValue]);
 
   return (
     <Tippy
