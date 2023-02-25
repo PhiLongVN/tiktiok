@@ -26,10 +26,21 @@ function SearchBar() {
   };
 
   const handleChange = (e) => {
-    setSearchText(e.target.value);
+    if (e.target.key === 32 && e.target.selectionStart === 0) {
+      console.log('ff');
+      return false;
+    } else {
+      setSearchText(e.target.value);
+    }
   };
   const handleCLickOutSide = () => {
     setShowBox(false);
+  };
+
+  const handleMouseDown = (e) => {
+    if (e.keyCode === 32 && e.target.selectionStart === 0) {
+      e.preventDefault();
+    }
   };
   // ---------------------------------------------------------------------------------------------------------------
   const debounceValue = useDebounce(searchText, 800);
@@ -45,7 +56,7 @@ function SearchBar() {
 
     fetch(
       `https://tiktok.fullstack.edu.vn/api/users/search?q=${encodeURI(
-        debounceValue
+        debounceValue.trim()
       )}&type=less`
     )
       .then((res) => res.json())
@@ -64,7 +75,9 @@ function SearchBar() {
     <Tippy
       render={(attrs) => (
         <div {...attrs} className={cx('box')} tabIndex="-1" {...attrs}>
-          <h3>Account title</h3>
+          {result.length > 0 && (
+            <h3 className={cx('account-title')}>Account title</h3>
+          )}
           {result.map((val) => {
             return <Account name={val.full_name} key={val.id} data={val} />;
           })}
@@ -83,6 +96,7 @@ function SearchBar() {
           type="text"
           value={searchText}
           onChange={handleChange}
+          onKeyDown={handleMouseDown}
           placeholder="Search accounts and videos"
         />
         <div className={cx('icon-load')}>

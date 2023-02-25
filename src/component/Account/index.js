@@ -6,9 +6,9 @@ import { AiFillCheckCircle } from 'react-icons/ai';
 import React from 'react';
 
 let cx = classNames.bind(styles);
-function Account({ data }) {
+function  Account({ data }) {
   return (
-    <Link className={cx('acc-block')}>
+    <Link to={data.nickname} className={cx('acc-block')}>
       <img src={data.avatar} alt="fff" />
       <div>
         <p className={cx('title')}>

@@ -1,13 +1,11 @@
 .acc-block {
   cursor: pointer;
-  margin-top: 1rem;
   display: flex;
   justify-content: flex-start;
   align-items: center;
   width: 100%;
   gap: 1rem;
-  border-radius: 20px;
-  padding: 1rem;
+  padding:  1rem;
   text-align: left;
 
   &:hover {
