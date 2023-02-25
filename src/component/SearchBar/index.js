@@ -33,13 +33,16 @@ function SearchBar() {
   };
   // ---------------------------------------------------------------------------------------------------------------
   useEffect(() => {
-    if (searchText === '') {
+    if (searchText.trim() === '') {
+      setResult([]);
       return;
     }
     setLoaded(false);
     setLoading(true);
     fetch(
-      `https://tiktok.fullstack.edu.vn/api/users/search?q=${searchText}&type=less`
+      `https://tiktok.fullstack.edu.vn/api/users/search?q=${encodeURI(
+        searchText
+      )}&type=less`
     )
       .then((res) => res.json())
       .then((res) => {
