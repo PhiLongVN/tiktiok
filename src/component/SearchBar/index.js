@@ -1,12 +1,13 @@
 import React from 'react';
-import classNames from 'classnames/bind';
 import Account from '-/component/Account';
 import { useRef, useEffect, useState } from 'react';
 import { useDebounce } from '../Hook';
-
+import request from '-/utils/index';
+import axios from 'axios';
 import Tippy from '@tippyjs/react/headless';
 import { AiOutlineLoading3Quarters, AiOutlineSearch } from 'react-icons/ai';
 import { TiDelete } from 'react-icons/ti';
+import classNames from 'classnames/bind';
 import styles from '-/component/SearchBar/SearchBar.module.scss';
 let cx = classNames.bind(styles);
 
@@ -54,21 +55,22 @@ function SearchBar() {
     setLoaded(false);
     setLoading(true);
 
-    fetch(
-      `https://tiktok.fullstack.edu.vn/api/users/search?q=${encodeURI(
-        debounceValue.trim()
-      )}&type=less`
-    )
-      .then((res) => res.json())
+    request
+      .get('users/search', {
+        params: {
+          q: debounceValue,
+          type: 'less',
+        },
+      })
       .then((res) => {
+        console.log(res);
         setLoaded(true);
         setLoading(false);
-        setResult(res.data);
+        // setResult(res.data.data);
+      })
+      .catch((error) => {
+        console.log(error);
       });
-    // const aaa = setTimeout(() => {
-    // }, 800);
-
-    // return () => clearTimeout(aaa);
   }, [debounceValue]);
 
   return (

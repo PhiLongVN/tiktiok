@@ -13,7 +13,7 @@ function useDebounce(val, delay) {
     };
   }, [val, delay]);
 
-  return text;
+  return text.trim();
 }
 
 export default useDebounce;
