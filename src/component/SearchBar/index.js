@@ -2,8 +2,8 @@ import React from 'react';
 import Account from '-/component/Account';
 import { useRef, useEffect, useState } from 'react';
 import { useDebounce } from '../Hook';
-import request from '-/utils/index';
-import axios from 'axios';
+
+import * as SearchService from '-/component/API-Service/index';
 import Tippy from '@tippyjs/react/headless';
 import { AiOutlineLoading3Quarters, AiOutlineSearch } from 'react-icons/ai';
 import { TiDelete } from 'react-icons/ti';
@@ -27,12 +27,7 @@ function SearchBar() {
   };
 
   const handleChange = (e) => {
-    if (e.target.key === 32 && e.target.selectionStart === 0) {
-      console.log('ff');
-      return false;
-    } else {
-      setSearchText(e.target.value);
-    }
+    setSearchText(e.target.value);
   };
   const handleCLickOutSide = () => {
     setShowBox(false);
@@ -55,22 +50,18 @@ function SearchBar() {
     setLoaded(false);
     setLoading(true);
 
-    request
-      .get('users/search', {
-        params: {
-          q: debounceValue,
-          type: 'less',
-        },
-      })
-      .then((res) => {
-        console.log(res);
-        setLoaded(true);
-        setLoading(false);
-        // setResult(res.data.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    const resultApi = async () => {
+      const res = await SearchService.Search(debounceValue);
+
+      if (res) {
+        setResult(res);
+      }
+
+      setLoaded(true);
+      setLoading(false);
+    };
+
+    resultApi();
   }, [debounceValue]);
 
   return (
