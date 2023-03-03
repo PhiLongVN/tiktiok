@@ -8,6 +8,7 @@ import React from 'react';
 
 let cx = classNames.bind(styles);
 function Account({ data }) {
+  console.log("🚀 ~ file: index.js:11 ~ Account ~ data:", data)
   return (
     <Link to={data.nickname} className={cx('acc-block')}>
       <Image src={data.src} />
