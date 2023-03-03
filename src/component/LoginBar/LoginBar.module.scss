@@ -24,6 +24,7 @@
   &:hover > * {
     visibility: visible;
     opacity: 1;
+    transition: 0.5s 0s;
   }
 }
 .triangle {
@@ -36,7 +37,7 @@
   transform: rotate(45deg);
   background: white;
   visibility: hidden;
-  transition: 0.5s all ease;
+  transition: 0.5s 1s all ease;
 }
 
 // is-user
@@ -62,11 +63,14 @@
   img {
     height: 50px;
     width: 50px;
+    min-height: 30px;
+    min-width: 50px;
     border-radius: 100rem;
     cursor: pointer;
   }
   &:hover > * {
     visibility: visible;
     opacity: 1;
+    transition: 0.5s 0s;
   }
 }

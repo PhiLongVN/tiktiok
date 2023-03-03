@@ -7,17 +7,19 @@ import Button from '-/component/Button';
 import { HiOutlineDotsVertical } from 'react-icons/hi';
 import {
   faMessage,
+  faPaperPlane,
   faPlusSquare,
   faUpload,
 } from '@fortawesome/free-solid-svg-icons';
 
 let cx = classNames.bind(styles);
-function LoginBar({ isUser }) {
+function LoginBar({ isUser = false }) {
   return (
     <div className={cx('log')}>
       {isUser ? (
         <>
           <Tippy
+            duration={0}
             className={cx('icon-hover')}
             content="Upload"
             placement="bottom"
@@ -27,6 +29,17 @@ function LoginBar({ isUser }) {
             </span>
           </Tippy>
           <Tippy
+            duration={0}
+            className={cx('icon-hover')}
+            content="Send"
+            placement="bottom"
+          >
+            <span>
+              <Button to={'upload'} iconOnly icon={faPaperPlane}></Button>
+            </span>
+          </Tippy>
+          <Tippy
+            duration={0}
             className={cx('icon-hover')}
             content="Messeses"
             placement="bottom"

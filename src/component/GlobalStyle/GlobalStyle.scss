@@ -2,6 +2,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap');
 :root {
   --text-color: #333;
+
+  --main-font: 'ProximaNova', sans-serif;
 }
 
 html {
@@ -10,7 +12,7 @@ html {
 
 body {
   color: var(--text-color);
-  font-family: 'Roboto Condensed', sans-serif;
+  font-family: var(--main-font);
   font-size: 1.6rem;
   min-height: 100vh;
 }
@@ -69,4 +71,22 @@ a {
 
 ul li {
   list-style: none;
+}
+
+@font-face {
+  font-family: ProximaNova;
+  src: url('/assets/font/Proxima-Nova-Bold.woff');
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: ProximaNova;
+  src: url('/assets/font/Proxima-Nova-Regular.woff2');
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: ProximaNova;
+  src: url('/assets/font/ProximaNova-Semibold.woff2');
+  font-weight: 600;
 }

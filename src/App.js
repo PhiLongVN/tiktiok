@@ -6,7 +6,6 @@ import '-/component/DarkTheme/DarkTheme.scss';
 function App() {
   const handleTheme = (theme) => {
 
-    console.log(theme);
   };
 
   return (

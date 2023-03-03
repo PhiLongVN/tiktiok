@@ -3,8 +3,9 @@ import styles from '-/component/Popup/Popup.module.scss';
 import classNames from 'classnames/bind';
 import Item from './PopUpItem';
 import { useState } from 'react';
-
+import Tippy from '@tippyjs/react';
 import {
+  faArrowLeft,
   faBackwardFast,
   faCoins,
   faGear,
@@ -75,13 +76,13 @@ const MENU_USER_ITEMS = [
   { icon: faCoins, title: 'Get Coins', to: '/coin' },
   { icon: faGear, title: 'Setting', to: '/setting' },
   ...MENU_ITEMS,
-  { icon: faRightFromBracket, title: 'Log Out', to: '/out', separate: "true" },
+  { icon: faRightFromBracket, title: 'Log Out', to: '/out', separate: 'true' },
 ];
 
 function Popup({ isUser }) {
   let items = isUser ? MENU_USER_ITEMS : MENU_ITEMS;
-  const [history, setHistory] = useState([{ data: items }]);
 
+  const [history, setHistory] = useState([{ data: items }]);
   const current = history[history.length - 1];
 
   const handleExpand = (ele, isParent) => {
@@ -99,34 +100,36 @@ function Popup({ isUser }) {
   };
 
   return (
-    <div onMouseLeave={handleLeave} className={cx('pop-up')}>
-      {history.length > 1 && (
-        <HeaderLanguage
-          icon={faBackwardFast}
-          title="Language"
-          onClick={handleBack}
-        />
-      )}
+    <Tippy>
+      <div onMouseLeave={handleLeave} className={cx('pop-up')}>
+        {history.length > 1 && (
+          <HeaderLanguage
+            icon={faArrowLeft}
+            title="Language"
+            onClick={handleBack}
+          />
+        )}
 
-      {current.data.map((ele, index) => {
-        let isParent = !!ele.children;
-        return (
-          <Item
-            key={index}
-            theme={ele.theme}
-            href={ele.href}
-            to={ele.to}
-            icon={ele.icon}
-            separate={ele.separate}
-            onClick={() => {
-              handleExpand(ele, isParent);
-            }}
-          >
-            {ele.title}
-          </Item>
-        );
-      })}
-    </div>
+        {current.data.map((ele, index) => {
+          let isParent = !!ele.children;
+          return (
+            <Item
+              key={index}
+              theme={ele.theme}
+              href={ele.href}
+              to={ele.to}
+              icon={ele.icon}
+              separate={ele.separate}
+              onClick={() => {
+                handleExpand(ele, isParent);
+              }}
+            >
+              {ele.title}
+            </Item>
+          );
+        })}
+      </div>
+    </Tippy>
   );
 }
 

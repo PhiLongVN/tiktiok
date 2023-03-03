@@ -27,16 +27,18 @@ function SearchBar() {
   };
 
   const handleChange = (e) => {
-    setSearchText(e.target.value);
+    let val = e.target.value;
+    if (!val.startsWith(' ')) {
+      setSearchText(val);
+    }
   };
   const handleCLickOutSide = () => {
     setShowBox(false);
   };
 
-  const handleMouseDown = (e) => {
-    if (e.keyCode === 32 && e.target.selectionStart === 0) {
-      e.preventDefault();
-    }
+  const handleIconClick = (e) => {
+    e.target.preventDefault();
+    console.log('ddd');
   };
   // ---------------------------------------------------------------------------------------------------------------
   const debounceValue = useDebounce(searchText, 800);
@@ -89,7 +91,6 @@ function SearchBar() {
           type="text"
           value={searchText}
           onChange={handleChange}
-          onKeyDown={handleMouseDown}
           placeholder="Search accounts and videos"
         />
         <div className={cx('icon-load')}>
@@ -105,7 +106,7 @@ function SearchBar() {
             )}
           </span>
         </div>
-        <button className={cx('search-icon')}>
+        <button className={cx('search-icon')} onClick={handleIconClick}>
           <AiOutlineSearch />
         </button>
       </div>

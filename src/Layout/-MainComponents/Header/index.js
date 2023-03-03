@@ -5,7 +5,7 @@ import logo from '-/assets/logo/logo.svg';
 import { Link } from 'react-router-dom';
 import LoginBar from '-/component/LoginBar';
 import SearchBar from '-/component/SearchBar';
-
+import { path } from '-/routes/routeConfig';
 let cx = classNames.bind(styles);
 
 function Header({ isUser = true }) {
@@ -13,9 +13,9 @@ function Header({ isUser = true }) {
     <div className={cx('header')}>
       <div className={cx('inner-header')}>
         {/* logo */}
-        <span>
-          <Link src={logo} alt="tik-tok-logo" />
-        </span>
+        <Link to={path.home}>
+          <img className={cx('logo')} src={logo} alt="tik-tok-logo" />
+        </Link>
 
         {/* search */}
         <SearchBar />
